@@ -64,7 +64,14 @@
       "Bash(chmod 600 /Users/egalante/Development/nba-sports-betting-compiler/backend/.env)",
       "Bash(npm audit *)",
       "Bash(git init *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(rm -rf frontend/.git && git add frontend && git status | head -20)",
+      "Bash(grep -E \"\\\\.env$\")",
+      "Bash(git config *)",
+      "Bash(git commit -m 'Initial commit: NBA Sports Betting Compiler - Production-ready with enterprise security *)"
+    ],
+    "additionalDirectories": [
+      "/Users/egalante/Development/nba-sports-betting-compiler/frontend/.git"
     ]
   }
 }
