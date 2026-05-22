@@ -1,0 +1,422 @@
+/* Game Detail Modal Styles */
+.game-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.game-detail-modal {
+  background: #1a1a1a;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+}
+
+/* Header */
+.game-detail-header {
+  position: relative;
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 12px 12px 0 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.game-matchup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.teams-detailed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.team-detailed {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.team-detailed .team-seed {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.team-info h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.team-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.team-info .team-abbr {
+  font-size: 12px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.vs-detailed {
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 0.7;
+  padding: 0 20px;
+}
+
+.game-meta {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.meta-item svg {
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.meta-label {
+  font-size: 12px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.meta-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.meta-subvalue {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Content */
+.game-detail-content {
+  padding: 30px;
+}
+
+.betting-summary {
+  margin-bottom: 30px;
+}
+
+.betting-summary h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #007bff;
+  margin: 0 0 15px 0;
+  font-size: 24px;
+}
+
+.summary-text {
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Best Bets */
+.best-bets-detailed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bet-card-detailed {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.bet-card-detailed:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+}
+
+.bet-header-detailed {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.bet-type-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.bet-type-section svg {
+  color: #007bff;
+}
+
+.bet-type-section h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bet-selection-detailed {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.bet-odds-section {
+  text-align: right;
+}
+
+.odds-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #28a745;
+  line-height: 1;
+}
+
+.sportsbook {
+  color: #999;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.bet-analysis {
+  border-top: 1px solid #444;
+  padding-top: 20px;
+}
+
+.analysis-metrics {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.metric {
+  flex: 1;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.confidence-level {
+  font-size: 12px;
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.reasoning-section {
+  background: #222;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.reasoning-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #007bff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.reasoning-text {
+  color: #ddd;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* No Bets State */
+.no-bets-detailed {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.no-bets-detailed svg {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.no-bets-detailed h4 {
+  margin: 0 0 10px 0;
+  color: #ccc;
+  font-size: 20px;
+}
+
+.no-bets-detailed p {
+  margin: 0;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Disclaimer */
+.detailed-disclaimer {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.detailed-disclaimer svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detailed-disclaimer h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.detailed-disclaimer p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-detail-overlay {
+    padding: 10px;
+  }
+
+  .game-detail-modal {
+    max-height: 95vh;
+  }
+
+  .game-detail-header {
+    padding: 20px;
+  }
+
+  .teams-detailed {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .team-detailed {
+    justify-content: center;
+  }
+
+  .vs-detailed {
+    transform: rotate(90deg);
+    padding: 10px;
+  }
+
+  .game-meta {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .meta-item {
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .game-detail-content {
+    padding: 20px;
+  }
+
+  .bet-header-detailed {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .bet-odds-section {
+    text-align: left;
+  }
+
+  .analysis-metrics {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .detailed-disclaimer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,170 @@
+// Mock API handlers for testing
+import { rest } from 'msw';
+import { GameWithBestBets, BetType } from '../types';
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
+// Mock game data
+const mockGames: GameWithBestBets[] = [
+  {
+    id: 'mock_game_001',
+    home_team: {
+      id: 1610612738,
+      name: 'Boston Celtics',
+      abbreviation: 'BOS',
+      city: 'Boston',
+      seed: 1
+    },
+    away_team: {
+      id: 1610612748,
+      name: 'Miami Heat',
+      abbreviation: 'MIA',
+      city: 'Miami',
+      seed: 8
+    },
+    scheduled_time: new Date().toISOString(),
+    status: 'scheduled',
+    arena: 'TD Garden',
+    series: 'Eastern Conference Finals Game 1',
+    season_type: 'playoffs',
+    odds: [
+      {
+        sportsbook: 'MockBook',
+        bet_type: BetType.MONEYLINE,
+        odds: -150,
+        selection: 'BOS',
+        last_updated: new Date().toISOString()
+      }
+    ],
+    best_bets: [
+      {
+        bet_type: BetType.MONEYLINE,
+        selection: 'BOS',
+        best_odds: -150,
+        sportsbook: 'MockBook',
+        confidence: 0.75,
+        reasoning: 'Strong home court advantage in playoffs',
+        expected_value: 0.15
+      },
+      {
+        bet_type: BetType.SPREAD,
+        selection: 'MIA',
+        line: 4.5,
+        best_odds: -110,
+        sportsbook: 'MockBook',
+        confidence: 0.68,
+        reasoning: 'Miami covers as road dog',
+        expected_value: 0.08
+      }
+    ]
+  }
+];
+
+export const handlers = [
+  // Get today's games
+  rest.get(`${API_BASE_URL}/api/games/today`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(mockGames.map(game => ({
+        ...game,
+        best_bets: undefined // Remove best_bets for today endpoint
+      })))
+    );
+  }),
+
+  // Get all games with best bets
+  rest.get(`${API_BASE_URL}/api/games/`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(mockGames)
+    );
+  }),
+
+  // Get specific game odds
+  rest.get(`${API_BASE_URL}/api/games/:gameId/odds`, (req, res, ctx) => {
+    const { gameId } = req.params;
+    const game = mockGames.find(g => g.id === gameId);
+
+    if (!game) {
+      return res(
+        ctx.status(404),
+        ctx.json({ detail: 'Game not found' })
+      );
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.json(game.odds)
+    );
+  }),
+
+  // Get specific game best bets
+  rest.get(`${API_BASE_URL}/api/games/:gameId/best-bets`, (req, res, ctx) => {
+    const { gameId } = req.params;
+    const game = mockGames.find(g => g.id === gameId);
+
+    if (!game) {
+      return res(
+        ctx.status(404),
+        ctx.json({ detail: 'Game not found' })
+      );
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.json(game.best_bets)
+    );
+  }),
+
+  // Get complete game data
+  rest.get(`${API_BASE_URL}/api/games/:gameId/complete`, (req, res, ctx) => {
+    const { gameId } = req.params;
+    const game = mockGames.find(g => g.id === gameId);
+
+    if (!game) {
+      return res(
+        ctx.status(404),
+        ctx.json({ detail: 'Game not found' })
+      );
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.json(game)
+    );
+  }),
+
+  // Health check
+  rest.get(`${API_BASE_URL}/health`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({ status: 'healthy', service: 'nba-betting-compiler' })
+    );
+  }),
+
+  // Data source info
+  rest.get(`${API_BASE_URL}/api/games/data-source`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        data_source: 'mock',
+        override_setting: 'test',
+        odds_api_configured: false,
+        available_sources: {
+          mock: 'Test mock data',
+          espn: 'ESPN API',
+          odds_api: 'The Odds API'
+        }
+      })
+    );
+  }),
+
+  // Error handler for unmatched requests
+  rest.get('*', (req, res, ctx) => {
+    console.error(`Unhandled request: ${req.url.toString()}`);
+    return res(
+      ctx.status(404),
+      ctx.json({ message: 'Not found' })
+    );
+  }),
+];
