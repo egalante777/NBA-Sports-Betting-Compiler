@@ -68,7 +68,15 @@
       "Bash(rm -rf frontend/.git && git add frontend && git status | head -20)",
       "Bash(grep -E \"\\\\.env$\")",
       "Bash(git config *)",
-      "Bash(git commit -m 'Initial commit: NBA Sports Betting Compiler - Production-ready with enterprise security *)"
+      "Bash(git commit -m 'Initial commit: NBA Sports Betting Compiler - Production-ready with enterprise security *)",
+      "Bash(git ls-tree *)",
+      "Bash(git rm *)",
+      "Bash(grep -E \"\\\\.env$|node_modules|build/\")",
+      "Bash(git reset *)",
+      "Bash(git commit -m 'Fix: Include frontend source files and secure environment configuration *)",
+      "Bash(grep -E \"\\\\.env\\\\.example$\")",
+      "Bash(lsof -ti:3000,8000)",
+      "Bash(xargs kill -9)"
     ],
     "additionalDirectories": [
       "/Users/egalante/Development/nba-sports-betting-compiler/frontend/.git"
